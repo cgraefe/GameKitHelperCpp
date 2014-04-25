@@ -27,6 +27,7 @@ public:
     bool isLocalPlayerAuthenticated();
     void getLocalPlayerFriends();
     void getPlayerInfo(std::vector<std::string>playerList);
+    GKPlayerCpp getLocalPlayer();
 
     // Scores
     void submitScoreToCatagory(int64_t s, std::string c);

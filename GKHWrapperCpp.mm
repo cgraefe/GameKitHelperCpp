@@ -71,6 +71,20 @@ void GKHWrapperCpp::getPlayerInfo(std::vector<std::string>playerList){
     
 }
 
+GKPlayerCpp GKHWrapperCpp::getLocalPlayer()
+{
+    GKLocalPlayer *localPlayer = [GKLocalPlayer localPlayer];
+
+    GKPlayerCpp player;
+    player.alias = localPlayer.alias.UTF8String;
+    player.isFriend = true;
+    player.playerID = localPlayer.playerID.UTF8String;
+    if ([localPlayer respondsToSelector:@selector(displayName)]) {
+        player.displayName = localPlayer.displayName.UTF8String;
+    }
+
+    return player;
+}
 
 
 #pragma mark Scores
@@ -102,7 +116,7 @@ void GKHWrapperCpp::retrieveScoresForPlayersToday(std::vector<std::string> *play
     GameKitHelper *gameKitHelper = [GameKitHelper sharedGameKitHelper];
     
     NSArray *playerIDsArray = nil;
-    if (playerIDs != nullptr) {
+    if (playerIDs != NULL) {
         playerIDsArray = [gameKitHelper convertCppVectorOfStringToNSArray:*playerIDs];
     }
     
@@ -125,7 +139,7 @@ void GKHWrapperCpp::retrieveScoresForPlayersThisWeek(std::vector<std::string> *p
     GameKitHelper *gameKitHelper = [GameKitHelper sharedGameKitHelper];
     
     NSArray *playerIDsArray = nil;
-    if (playerIDs != nullptr) {
+    if (playerIDs != NULL) {
         playerIDsArray = [gameKitHelper convertCppVectorOfStringToNSArray:*playerIDs];
     }
     
@@ -147,7 +161,7 @@ void GKHWrapperCpp::retrieveScoresForPlayersAllTime(std::vector<std::string> *pl
     GameKitHelper *gameKitHelper = [GameKitHelper sharedGameKitHelper];
     
     NSArray *playerIDsArray = nil;
-    if (playerIDs != nullptr) {
+    if (playerIDs != NULL) {
         playerIDsArray = [gameKitHelper convertCppVectorOfStringToNSArray:*playerIDs];
     }
 
@@ -231,12 +245,5 @@ void GKHWrapperCpp::setDelegate(GKHDelegate* delegate){
     [gameKitHelper setDelegate:delegate];
     
 }
-
-
-
-
-
-
-
 
 

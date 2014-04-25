@@ -89,7 +89,7 @@ static GameKitHelper *instanceOfGameKitHelper;
 	if ((self = [super init]))
 	{
         
-        _gkhDelegate = nullptr;
+        _gkhDelegate = NULL;
         
 		// Test for Game Center availability
 		Class gameKitLocalPlayerClass = NSClassFromString(@"GKLocalPlayer");
@@ -198,7 +198,7 @@ static GameKitHelper *instanceOfGameKitHelper;
     
     NSLog(@"Game Kit Helper - On local player authentication changed");
     
-    if (_gkhDelegate != nullptr) {
+    if (_gkhDelegate != NULL) {
         _gkhDelegate->onLocalPlayerAuthenticationChanged();
     }
     
@@ -241,7 +241,7 @@ static GameKitHelper *instanceOfGameKitHelper;
          {
              [self setLastError:error];
              //[delegate onFriendListReceived:friends];
-             if (_gkhDelegate != nullptr) {
+             if (_gkhDelegate != NULL) {
                  std::vector<std::string> vector = [self convertNSArrayOfStringToCppVector:friends];
                  _gkhDelegate->onFriendsListRecieved(vector);
              }
@@ -264,7 +264,7 @@ static GameKitHelper *instanceOfGameKitHelper;
              NSLog(@"about to store players");
              [self storePlayers:players];
              
-             if (_gkhDelegate != nullptr) {
+             if (_gkhDelegate != NULL) {
                  std::vector<GKPlayerCpp> vector = [self convertNSArrayOfGKPlayersToCppVector:players];
                  _gkhDelegate->onPlayerInfoReceived(vector);
              }
@@ -289,7 +289,7 @@ static GameKitHelper *instanceOfGameKitHelper;
          
          bool success = (error == nil);
          //[delegate onScoresSubmitted:success];
-         if (_gkhDelegate != nullptr) {
+         if (_gkhDelegate != NULL) {
              _gkhDelegate->onScoresSubmitted(success);
          }
      }];
@@ -324,7 +324,7 @@ static GameKitHelper *instanceOfGameKitHelper;
          {
              [self setLastError:error];
              //[delegate onScoresReceived:scores];
-             if (_gkhDelegate != nullptr) {
+             if (_gkhDelegate != NULL) {
                  _gkhDelegate->onScoresReceived([self convertNSArrayOfGKScoresToCppVector:scores]);
              }
          }];
@@ -366,7 +366,7 @@ static GameKitHelper *instanceOfGameKitHelper;
          }
          
          //send all achivements in the achievements disctionary to fthe delegate as a std::map
-         if (_gkhDelegate != nullptr) {
+         if (_gkhDelegate != NULL) {
              _gkhDelegate->onAchievementsLoaded([self convertNSDictionaryOfGKAchievementTostdMap:achievements]);
          }
          
@@ -415,7 +415,7 @@ static GameKitHelper *instanceOfGameKitHelper;
              }
              
              //[delegate onAchievementReported:achievement];
-             if (_gkhDelegate != nullptr) {
+             if (_gkhDelegate != NULL) {
                 _gkhDelegate->onAchievementReported([self convertGKAchievementToGKAchievementStruct:achievement]);
              }
              
@@ -436,7 +436,7 @@ static GameKitHelper *instanceOfGameKitHelper;
          [self setLastError:error];
          bool success = (error == nil);
          //[delegate onResetAchievements:success];
-         if (_gkhDelegate != nullptr) {
+         if (_gkhDelegate != NULL) {
              _gkhDelegate->onResetAchievements(success);
          }
          
@@ -682,7 +682,7 @@ static GameKitHelper *instanceOfGameKitHelper;
 {
 	[self dismissModalViewController];
 	//[delegate onLeaderboardViewDismissed];
-    if (_gkhDelegate != nullptr) {
+    if (_gkhDelegate != NULL) {
         _gkhDelegate->onLeaderboardViewDismissed();
     }
     
@@ -707,7 +707,7 @@ static GameKitHelper *instanceOfGameKitHelper;
 {
 	[self dismissModalViewController];
 	//[delegate onAchievementsViewDismissed];
-    if (_gkhDelegate != nullptr) {
+    if (_gkhDelegate != NULL) {
         _gkhDelegate->onAchievementsViewDismissed();
     }
 
